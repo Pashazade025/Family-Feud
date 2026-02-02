@@ -1,0 +1,13 @@
+.vs/
+bin/
+obj/
+*.user
+*.db
+*.suo
+*.log
+node_modules/
+packages/
+TestResults/
+.idea/
+*.pubxml.user
+*.7z
