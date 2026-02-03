@@ -4,14 +4,13 @@
 
 // Configuration
 const CONFIG = {
-    API_BASE_URL: 'https://localhost:7055/api',
+    API_BASE_URL: '/api',
     TOKEN_KEY: 'familyfeud_token',
     USER_KEY: 'familyfeud_user',
     LANG_KEY: 'familyfeud_lang',
     SETTINGS_KEY: 'familyfeud_settings',
-    QUESTION_TIME: 45 // Default 45 saniyə
+    QUESTION_TIME: 45
 };
-
 // Default Game Settings (Admin tərəfindən dəyişdirilə bilər)
 const DEFAULT_SETTINGS = {
     timer: 45,
