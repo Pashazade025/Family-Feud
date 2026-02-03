@@ -17,14 +17,14 @@ namespace Family_Feud.Migrations
                 name: "ApiKeys",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Key = table.Column<string>(type: "TEXT", nullable: false),
-                    DeveloperName = table.Column<string>(type: "TEXT", nullable: false),
-                    DeveloperEmail = table.Column<string>(type: "TEXT", nullable: false),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
-                    RateLimit = table.Column<int>(type: "INTEGER", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Key = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DeveloperName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DeveloperEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    RateLimit = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -35,14 +35,14 @@ namespace Family_Feud.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Username = table.Column<string>(type: "TEXT", nullable: false),
-                    Email = table.Column<string>(type: "TEXT", nullable: false),
-                    PasswordHash = table.Column<string>(type: "TEXT", nullable: false),
-                    Role = table.Column<string>(type: "TEXT", nullable: false),
-                    PreferredLanguage = table.Column<string>(type: "TEXT", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PreferredLanguage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -53,15 +53,15 @@ namespace Family_Feud.Migrations
                 name: "Questions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    QuestionTextEN = table.Column<string>(type: "TEXT", nullable: false),
-                    QuestionTextPL = table.Column<string>(type: "TEXT", nullable: false),
-                    Category = table.Column<string>(type: "TEXT", nullable: false),
-                    Difficulty = table.Column<int>(type: "INTEGER", nullable: false),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedByUserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    CreatedById = table.Column<int>(type: "INTEGER", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    QuestionTextEN = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    QuestionTextPL = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Difficulty = table.Column<int>(type: "int", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "int", nullable: false),
+                    CreatedById = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -77,13 +77,13 @@ namespace Family_Feud.Migrations
                 name: "Answers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    QuestionId = table.Column<int>(type: "INTEGER", nullable: false),
-                    AnswerTextEN = table.Column<string>(type: "TEXT", nullable: false),
-                    AnswerTextPL = table.Column<string>(type: "TEXT", nullable: false),
-                    Points = table.Column<int>(type: "INTEGER", nullable: false),
-                    Rank = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    QuestionId = table.Column<int>(type: "int", nullable: false),
+                    AnswerTextEN = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AnswerTextPL = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Points = table.Column<int>(type: "int", nullable: false),
+                    Rank = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -100,15 +100,15 @@ namespace Family_Feud.Migrations
                 name: "Games",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    HostUserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Status = table.Column<string>(type: "TEXT", nullable: false),
-                    CurrentQuestionId = table.Column<int>(type: "INTEGER", nullable: true),
-                    Team1Score = table.Column<int>(type: "INTEGER", nullable: false),
-                    Team2Score = table.Column<int>(type: "INTEGER", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    HostId = table.Column<int>(type: "INTEGER", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    HostUserId = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CurrentQuestionId = table.Column<int>(type: "int", nullable: true),
+                    Team1Score = table.Column<int>(type: "int", nullable: false),
+                    Team2Score = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    HostId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -129,11 +129,11 @@ namespace Family_Feud.Migrations
                 name: "GameParticipants",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    GameId = table.Column<int>(type: "INTEGER", nullable: false),
-                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    TeamNumber = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GameId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    TeamNumber = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -152,6 +152,13 @@ namespace Family_Feud.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            // ✅ ƏVVƏLcə Users insert olunur
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "CreatedAt", "Email", "PasswordHash", "PreferredLanguage", "Role", "Username" },
+                values: new object[] { 1, new DateTime(2026, 2, 3, 12, 29, 52, 187, DateTimeKind.Utc), "admin@familyfeud.com", "$2a$11$U372Ww7DyS.jxgu6TpoqvO.EfGlIN6wDAGTa6/FGpT8lfk/.7C3UC", "en", "Admin", "admin" });
+
+            // ✅ Sonra Questions insert olunur
             migrationBuilder.InsertData(
                 table: "Questions",
                 columns: new[] { "Id", "Category", "CreatedById", "CreatedByUserId", "Difficulty", "IsActive", "QuestionTextEN", "QuestionTextPL" },
@@ -161,11 +168,7 @@ namespace Family_Feud.Migrations
                     { 2, "Animals", null, 1, 1, true, "Name a popular pet", "Wymień popularne zwierzę domowe" }
                 });
 
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "CreatedAt", "Email", "PasswordHash", "PreferredLanguage", "Role", "Username" },
-                values: new object[] { 1, new DateTime(2026, 1, 30, 12, 53, 39, 653, DateTimeKind.Utc).AddTicks(7590), "admin@familyfeud.com", "$2a$11$ZUAT4VZFGRShjI.GPv/4/OMOBp2qpCJPqy0cQmlin6dZ9/FbFtZ/.", "en", "Admin", "admin" });
-
+            // ✅ Ən sonda Answers insert olunur
             migrationBuilder.InsertData(
                 table: "Answers",
                 columns: new[] { "Id", "AnswerTextEN", "AnswerTextPL", "Points", "QuestionId", "Rank" },
