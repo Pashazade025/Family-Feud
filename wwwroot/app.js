@@ -204,7 +204,7 @@ const TRANSLATIONS = {
     }
 };
 
-// State Management
+// State Management, All application data is stored in a single state object. This makes it easy to track and update data across the app.
 const state = {
     currentLang: localStorage.getItem(CONFIG.LANG_KEY) || 'en',
     token: localStorage.getItem(CONFIG.TOKEN_KEY) || null,
@@ -395,6 +395,8 @@ function calculateTimeBonus() {
 // API FUNCTIONS
 // ========================================
 
+//a reusable apiRequest() function that handles all HTTP requests, a reusable apiRequest() function that handles all HTTP requests
+
 async function apiRequest(endpoint, options = {}) {
     const url = `${CONFIG.API_BASE_URL}${endpoint}`;
     
@@ -426,8 +428,8 @@ async function apiRequest(endpoint, options = {}) {
     }
 }
 
-// Auth API
-async function login(email, password) {
+// Auth API, localStorage keeps user logged in even after closing browser.
+  {
     const data = await apiRequest('/auth/login', {
         method: 'POST',
         body: JSON.stringify({ email, password })
@@ -806,23 +808,31 @@ function checkAnswer(userAnswer) {
     if (!question || !question.answers) return false;
     
     const normalizedInput = userAnswer.toLowerCase().trim();
+    
+    // ✅ Minimum 2 hərf tələb et
+    if (normalizedInput.length < 2) {
+        return false;
+    }
+    
     const sortedAnswers = [...question.answers].sort((a, b) => a.rank - b.rank);
     
     for (let i = 0; i < sortedAnswers.length; i++) {
         if (state.revealedAnswers.includes(i)) continue;
         
         const answer = sortedAnswers[i];
-        // Hər iki dildə yoxla
-        const answerEN = (answer.answerTextEN || answer.text || '').toLowerCase();
-        const answerPL = (answer.answerTextPL || '').toLowerCase();
+        const answerEN = (answer.answerTextEN || answer.text || '').toLowerCase().trim();
+        const answerPL = (answer.answerTextPL || '').toLowerCase().trim();
         
-        if (answerEN.includes(normalizedInput) || 
-            normalizedInput.includes(answerEN) ||
+        // ✅ Daha dəqiq yoxlama - ya tam uyğunluq, ya da minimum 3 hərf ilə başlasın
+        const isMatch = 
             answerEN === normalizedInput ||
-            (answerPL && (answerPL.includes(normalizedInput) || 
-            normalizedInput.includes(answerPL) ||
-            answerPL === normalizedInput))) {
-            
+            answerPL === normalizedInput ||
+            (normalizedInput.length >= 3 && answerEN.startsWith(normalizedInput)) ||
+            (normalizedInput.length >= 3 && answerPL.startsWith(normalizedInput)) ||
+            (normalizedInput.length >= 3 && answerEN.includes(normalizedInput) && normalizedInput.length >= answerEN.length * 0.5) ||
+            (normalizedInput.length >= 3 && answerPL.includes(normalizedInput) && normalizedInput.length >= answerPL.length * 0.5);
+        
+        if (isMatch) {
             state.revealedAnswers.push(i);
             state.score += answer.points;
             state.correctAnswers++;
