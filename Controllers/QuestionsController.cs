@@ -107,18 +107,18 @@ namespace Family_Feud.Controllers
             return Ok(question);
         }
 
-        [AllowAnonymous]
-        // Override any [Authorize] - anyone can access
-        // Used for testing, should be [Authorize(Roles = "Admin")] in production
-
         [HttpPost]
         // POST /api/questions - create new question
+        [Authorize(Roles = "Admin")]
+        // Only Admin can create questions
+        // Requires valid JWT token with Role = "Admin"
         public async Task<ActionResult<QuestionDto>> CreateQuestion([FromBody] CreateQuestionRequest request)
         // [FromBody] = deserialize JSON body to object
         {
-            var userId = 1;
-            // Hardcoded for now
-            // Should be: int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value)
+            // Get user ID from JWT token
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            var userId = userIdClaim != null ? int.Parse(userIdClaim.Value) : 1;
+            // If claim exists, parse it; otherwise default to 1
 
             var question = new Question
             {
@@ -169,9 +169,11 @@ namespace Family_Feud.Controllers
             // Body contains created question
         }
 
-        [AllowAnonymous]
         [HttpDelete("{id}")]
         // DELETE /api/questions/5 - delete question
+        [Authorize(Roles = "Admin")]
+        // Only Admin can delete questions
+        // Soft delete - marks as inactive, doesn't remove from database
         public async Task<IActionResult> DeleteQuestion(int id)
         {
             var question = await _context.Questions.FindAsync(id);

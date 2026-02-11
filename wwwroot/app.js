@@ -429,12 +429,12 @@ async function apiRequest(endpoint, options = {}) {
 }
 
 // Auth API, localStorage keeps user logged in even after closing browser.
-  {
+async function login(email, password) {
     const data = await apiRequest('/auth/login', {
         method: 'POST',
         body: JSON.stringify({ email, password })
     });
-    
+
     state.token = data.token;
     state.user = {
         id: data.userId,
@@ -443,12 +443,13 @@ async function apiRequest(endpoint, options = {}) {
         role: data.role,
         preferredLanguage: data.preferredLanguage
     };
-    
+
     localStorage.setItem(CONFIG.TOKEN_KEY, data.token);
     localStorage.setItem(CONFIG.USER_KEY, JSON.stringify(state.user));
-    
+
     return data;
 }
+
 async function register(username, email, password) {
     return await apiRequest('/auth/register', {
         method: 'POST',
