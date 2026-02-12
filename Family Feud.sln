@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Family Feud", "Family Feud.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Family Feud_Console", "..\Family Feud_Console\Family Feud_Console.csproj", "{09200DC8-8CB8-495D-A758-9D811602ADD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyFeud.Tests", "..\FamilyFeud.Tests\FamilyFeud.Tests.csproj", "{24A00940-F5F3-47A6-BC9A-A1BDC6087192}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyFeud.Tests", "..\FamilyFeud.Tests\FamilyFeud.Tests.csproj", "{0AEC569E-C128-C918-F637-DBE994EC84EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{09200DC8-8CB8-495D-A758-9D811602ADD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09200DC8-8CB8-495D-A758-9D811602ADD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09200DC8-8CB8-495D-A758-9D811602ADD7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{24A00940-F5F3-47A6-BC9A-A1BDC6087192}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{24A00940-F5F3-47A6-BC9A-A1BDC6087192}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{24A00940-F5F3-47A6-BC9A-A1BDC6087192}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{24A00940-F5F3-47A6-BC9A-A1BDC6087192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AEC569E-C128-C918-F637-DBE994EC84EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AEC569E-C128-C918-F637-DBE994EC84EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AEC569E-C128-C918-F637-DBE994EC84EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AEC569E-C128-C918-F637-DBE994EC84EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
